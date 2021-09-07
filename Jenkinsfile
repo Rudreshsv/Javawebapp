@@ -8,6 +8,7 @@ pipeline {
             }
             stage('maven build') {
                 steps{
+                    //cd Javawebapp
                     sh 'mvn clean install'
                 }
             }
