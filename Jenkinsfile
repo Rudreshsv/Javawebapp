@@ -38,7 +38,7 @@ pipeline {
            }
         }
         
-        stage('Code Quality Check (sonarqube)')
+        stage('Code Quality Check (Sonarqube)')
         { 
             environment { 
                 projectKey = 'Javawebapp'
