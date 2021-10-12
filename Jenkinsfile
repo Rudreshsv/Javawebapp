@@ -75,13 +75,13 @@ pipeline {
                         -Dsonar.sourceEncoding=${sonarSourceEncoding} 
                        
                         
-                     """
+                   """
                 }
              }
           }
         }
         
-        /*stage('Quality gate') {
+        /* stage('Quality gate') {
 
             steps {
 
