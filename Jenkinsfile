@@ -6,11 +6,16 @@ pipeline {
 
     // global env variables
 
-    /*environment {
+    environment {
 
-        EMAIL_RECIPIENTS = 'akshay.kg@bt.com'
+         pom = readMavenPom file: "pom.xml"
+                appVersion = "pom.version"
+                appPomGroupID =  "pom.groupId"
+                appGroupID = "appPomGroupID.toString().replace('.', '/')"
+                appName = "readMavenPom().getArtifactId()"
 
-    }*/
+
+    }
     
     stages {
         
@@ -81,7 +86,7 @@ pipeline {
           }
         }
         
-        /* stage('Quality gate') {
+         stage('Quality gate') {
 
             steps {
 
@@ -107,14 +112,15 @@ pipeline {
 
             }
 
-        }*/
+        }
 
-        /*stage('Upload to Nexus') {
+        stage('Upload to Nexus') {
             steps {
                 // Deploy to Nexus
-               nexusPublisher nexusInstanceId: 'nexus', nexusRepositoryId: 'EED_Engg-Excellence-Devops-POC_maven_releases', packages: []
+               nexusPublisher nexusInstanceId: 'nexus-dev', nexusRepositoryId: 'maven-releases', packages: [[$class: 'MavenPackage', mavenAssetList: [[classifier: '', extension: '', filePath: 'target/SimpleWebApplication.war']], mavenCoordinate: [artifactId: "${appname}", groupId: "${appPomGroupID}", packaging: 'war', version: "${appVersion}-${BUILD_NUMBER}"]]]
+
             }
-        }*/
+        }
     }
         /*post('Send Email') {
         failure {
